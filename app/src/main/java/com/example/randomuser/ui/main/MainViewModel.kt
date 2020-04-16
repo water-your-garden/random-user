@@ -34,6 +34,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
+    fun onUserCardClicked(user: UserModel) {
+        //TODO: navigate to user detail
+    }
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainViewModel::class.java)) {

@@ -18,13 +18,22 @@ class MainFragment : Fragment() {
             .get(MainViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         val binding = MainFragmentBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        val adapter = UserListAdapter(UserListAdapter.OnClickListener {
+            viewModel.onUserCardClicked(it)
+        })
+        binding.recyclerView.adapter = adapter
+
+        adapter.submitList(viewModel.users.value)
 
         return binding.root
     }
