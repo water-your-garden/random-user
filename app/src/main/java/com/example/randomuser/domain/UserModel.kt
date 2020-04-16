@@ -7,6 +7,5 @@ data class UserModel(
     val LastName: String,
     val gender: String,
     val dateOfBirth: String,
-    val thumbnailUrl: String,
     val profilePhotoUrl: String
 )

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:userThumbnailImage="@{user}"
+                app:userThumbnailImage="@{user.profilePhotoUrl}"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView

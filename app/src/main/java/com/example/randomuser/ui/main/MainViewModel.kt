@@ -6,10 +6,12 @@ import com.example.randomuser.domain.UserModel
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    val users = MutableLiveData<List<UserModel>>()
+    private var _users = MutableLiveData<List<UserModel>>()
+    val users: LiveData<List<UserModel>>
+        get() = _users
 
     init {
-        users.value = listOf(
+        _users.value = listOf(
             UserModel(
                 "82b52e2b-0cce-46f8-b468-5aed37f4b209",
                 "Ms",
@@ -17,7 +19,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 "Chavez",
                 "female",
                 "1992-09-13T22:48:10.250Z",
-                "https://randomuser.me/api/portraits/thumb/women/20.jpg",
                 "https://randomuser.me/api/portraits/women/20.jpg"
 
             ),
@@ -28,11 +29,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 "Kunkel",
                 "male",
                 "1980-07-26T05:18:24.905Z",
-                "https://randomuser.me/api/portraits/thumb/men/45.jpg",
                 "https://randomuser.me/api/portraits/men/45.jpg"
             )
         )
     }
+
 
     fun onUserCardClicked(user: UserModel) {
         //TODO: navigate to user detail
