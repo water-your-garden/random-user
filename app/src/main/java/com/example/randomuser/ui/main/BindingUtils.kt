@@ -39,9 +39,8 @@ fun ImageView.setUserThumbnail(thumbUrl: String) {
         Glide.with(this.context)
             .load(imgUri)
             .apply(RequestOptions()
-                    //TODO: Replace these resources with proper drawables
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_launcher_background))
+                .placeholder(R.drawable.ic_broken_image)
+                .error(R.drawable.loading_animation))
             .into(this)
     }
 }
