@@ -6,21 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.randomuser.R
+import com.example.randomuser.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        ViewModelProvider(this, MainViewModel.Factory(activity.application))
+            .get(MainViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        val binding = MainFragmentBinding.inflate(inflater)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        return binding.root
+    }
 }
