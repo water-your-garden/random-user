@@ -6,9 +6,13 @@ import com.example.randomuser.domain.UserModel
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var _users = MutableLiveData<List<UserModel>>()
+    private val _users = MutableLiveData<List<UserModel>>()
     val users: LiveData<List<UserModel>>
         get() = _users
+
+    private val _navigateToSelectedProperty = MutableLiveData<UserModel>()
+    val navigateToSelectedProperty: LiveData<UserModel>
+        get() = _navigateToSelectedProperty
 
     init {
         _users.value = listOf(
@@ -34,9 +38,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
+    fun displayUserDetails(user: UserModel) {
+        _navigateToSelectedProperty.value = user
+    }
 
-    fun onUserCardClicked(user: UserModel) {
-        //TODO: navigate to user detail
+    fun displayUserDetailsComplete() {
+        _navigateToSelectedProperty.value = null
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

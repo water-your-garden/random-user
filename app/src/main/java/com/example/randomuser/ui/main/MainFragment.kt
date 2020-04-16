@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.randomuser.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -29,11 +31,19 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = UserListAdapter(UserListAdapter.OnClickListener {
-            viewModel.onUserCardClicked(it)
+            viewModel.displayUserDetails(it)
         })
         binding.recyclerView.adapter = adapter
 
         adapter.submitList(viewModel.users.value)
+
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                this.findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it))
+                viewModel.displayUserDetailsComplete()
+            }
+        })
 
         return binding.root
     }
