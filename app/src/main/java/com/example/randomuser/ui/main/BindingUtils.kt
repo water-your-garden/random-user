@@ -19,7 +19,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<UserModel>?) {
 
 @BindingAdapter("userNameString")
 fun TextView.setUserName(item: UserModel) {
-    text = "${item.title} ${item.firstName} ${item.LastName}"
+    text = "${item.title} ${item.firstName} ${item.lastName}"
 }
 
 @BindingAdapter("userDateOfBirthString")
