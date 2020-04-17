@@ -1,6 +1,5 @@
 package com.example.randomuser.ui.main
 
-import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -43,4 +42,14 @@ fun ImageView.setUserThumbnail(thumbUrl: String) {
                 .error(R.drawable.loading_animation))
             .into(this)
     }
+}
+
+@BindingAdapter("userAgeString")
+fun TextView.setUserAge(age: Int) {
+    text = age.toString()
+}
+
+@BindingAdapter("userLocationString")
+fun TextView.setUserLocation(item: UserModel) {
+    text = "${item.country}, ${item.city}"
 }
