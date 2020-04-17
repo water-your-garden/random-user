@@ -23,13 +23,13 @@ fun TextView.setUserName(item: UserModel) {
 }
 
 @BindingAdapter("userDateOfBirthString")
-fun TextView.setUserDateOfBirth(item: UserModel) {
-    text = item.dateOfBirth
+fun TextView.setUserDateOfBirth(dateOfBirth: String) {
+    text = dateOfBirth
 }
 
 @BindingAdapter("userGenderString")
-fun TextView.setUserGender(item: UserModel) {
-    text = item.gender
+fun TextView.setUserGender(gender: String) {
+    text = gender
 }
 
 @BindingAdapter("userThumbnailImage")
@@ -39,6 +39,7 @@ fun ImageView.setUserThumbnail(thumbUrl: String) {
         Glide.with(this.context)
             .load(imgUri)
             .apply(RequestOptions()
+                .dontAnimate()
                 .placeholder(R.drawable.ic_broken_image)
                 .error(R.drawable.loading_animation))
             .into(this)
