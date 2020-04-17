@@ -55,7 +55,12 @@ fun NetworkUserContainer.asDatabaseModel(): List<DatabaseUser> {
             firstName = it.name.first,
             lastName = it.name.last,
             gender = it.gender,
+            city = it.location.city,
+            country = it.location.country,
+            email = it.email,
+            phone = it.phone,
             dateOfBirth = it.dob.date,
+            age = it.dob.age,
             profilePhotoUrl = it.picture.large
         )
     }

@@ -12,7 +12,12 @@ data class DatabaseUser constructor(
     val firstName: String,
     val lastName: String,
     val gender: String,
+    val city: String,
+    val country: String,
+    val email: String,
+    val phone: String,
     val dateOfBirth: String,
+    val age: Int,
     val profilePhotoUrl: String
 )
 
@@ -24,7 +29,12 @@ fun List<DatabaseUser>.asDomainModel() : List<UserModel> {
             firstName = it.firstName,
             lastName = it.lastName,
             gender = it.gender,
+            city = it.city,
+            country = it.country,
+            email = it.email,
+            phone = it.phone,
             dateOfBirth = it.dateOfBirth,
+            age = it.age,
             profilePhotoUrl = it.profilePhotoUrl
 
         )

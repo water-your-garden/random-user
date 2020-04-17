@@ -10,6 +10,11 @@ data class UserModel(
     val firstName: String,
     val lastName: String,
     val gender: String,
+    val city: String,
+    val country: String,
+    val email: String,
+    val phone: String,
     val dateOfBirth: String,
+    val age: Int,
     val profilePhotoUrl: String
 ) : Parcelable
