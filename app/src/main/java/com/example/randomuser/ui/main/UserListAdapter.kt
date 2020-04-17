@@ -2,6 +2,7 @@ package com.example.randomuser.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,8 @@ class UserListAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<UserModel, UserListAdapter.UserViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        return UserViewHolder(UserItemBinding.inflate(LayoutInflater.from(parent.context)))
+        val userItemBinding = DataBindingUtil.inflate<UserItemBinding>(LayoutInflater.from(parent.context), R.layout.user_item, parent, false)
+        return UserViewHolder(userItemBinding)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
