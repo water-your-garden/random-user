@@ -1,15 +1,16 @@
 package com.example.randomuser.ui.main
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.randomuser.R
 import com.example.randomuser.domain.UserModel
+import java.text.SimpleDateFormat
 
 @BindingAdapter("userData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<UserModel>?) {
@@ -24,12 +25,10 @@ fun TextView.setUserName(item: UserModel) {
 
 @BindingAdapter("userDateOfBirthString")
 fun TextView.setUserDateOfBirth(dateOfBirth: String) {
-    text = dateOfBirth
-}
-
-@BindingAdapter("userGenderString")
-fun TextView.setUserGender(gender: String) {
-    text = gender
+    var sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    val newDate = sdf.parse(dateOfBirth.removeSuffix("."))
+    sdf = SimpleDateFormat("d MMM yyyy")
+    text = sdf.format(newDate).toString()
 }
 
 @BindingAdapter("userThumbnailImage")

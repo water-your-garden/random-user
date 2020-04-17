@@ -53,10 +53,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:text="@{viewModel.user.gender}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateOfBirthText"
-            app:userGenderString="@{viewModel.user.gender}"
             tools:text="Gender" />
+
+        <TextView
+            android:id="@+id/countryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderText"
+            app:text="@{viewModel.user.country}"
+            tools:text="Country" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
