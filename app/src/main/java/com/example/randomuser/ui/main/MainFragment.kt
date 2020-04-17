@@ -37,6 +37,12 @@ class MainFragment : Fragment() {
 
         adapter.submitList(viewModel.users.value)
 
+        viewModel.users.observe(viewLifecycleOwner, Observer { users ->
+            users?.apply{
+                adapter.submitList(this)
+            }
+        })
+
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if(null != it) {
                 this.findNavController()
