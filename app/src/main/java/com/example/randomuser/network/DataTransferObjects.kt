@@ -1,9 +1,10 @@
 package com.example.randomuser.network
 
+import com.example.randomuser.database.DatabaseUser
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NetworkUserContainer(val videos: List<NetworkUser>)
+data class NetworkUserContainer(val results: List<NetworkUser>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
@@ -12,16 +13,16 @@ data class NetworkUser(
     val location: Location,
     val email: String,
     val login: Login,
-    val dateOfBirth: DateOfBirth,
+    val dob: DateOfBirth,
     val phone: String,
-    val profilePhotoUrl: Picture
+    val picture: Picture
 )
 
 @JsonClass(generateAdapter = true)
 data class Name(
     val title: String,
-    val firstName: String,
-    val lastName: String
+    val first: String,
+    val last: String
 )
 
 @JsonClass(generateAdapter = true)
@@ -43,6 +44,20 @@ data class DateOfBirth(
 
 @JsonClass(generateAdapter = true)
 data class Picture(
-    val profilePhotoUrl: String
+    val large: String
 )
+
+fun NetworkUserContainer.asDatabaseModel(): List<DatabaseUser> {
+    return results.map {
+        DatabaseUser(
+            uuid = it.login.uuid,
+            title = it.name.title,
+            firstName = it.name.first,
+            lastName = it.name.last,
+            gender = it.gender,
+            dateOfBirth = it.dob.date,
+            profilePhotoUrl = it.picture.large
+        )
+    }
+}
 
