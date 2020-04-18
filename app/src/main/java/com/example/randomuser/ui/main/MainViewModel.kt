@@ -19,16 +19,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val navigateToSelectedProperty: LiveData<UserModel>
         get() = _navigateToSelectedProperty
 
-    private fun refreshUsersFromRepository() {
-        viewModelScope.launch {
-            try {
-                usersRepository.requestAndSaveData()
-            } catch (networkError: IOException) {
-                //TODO: handle network error
-            }
-        }
-    }
-
     fun displayUserDetails(user: UserModel) {
         _navigateToSelectedProperty.value = user
     }
