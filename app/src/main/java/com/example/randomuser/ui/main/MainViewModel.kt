@@ -2,6 +2,7 @@ package com.example.randomuser.ui.main
 
 import android.app.Application
 import androidx.lifecycle.*
+import androidx.paging.PagedList
 import com.example.randomuser.database.getDatabase
 import com.example.randomuser.domain.UserModel
 import com.example.randomuser.repository.UsersRepository
@@ -10,9 +11,9 @@ import java.io.IOException
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val usersRepository = UsersRepository(getDatabase(application))
+    private val usersRepository = UsersRepository(getDatabase(application), viewModelScope)
 
-    val users = usersRepository.users
+    val users : LiveData<PagedList<UserModel>> = usersRepository.users
 //    private val _users = MutableLiveData<List<UserModel>>()
 //    val users : LiveData<List<UserModel>>
 //        get () = _users
@@ -29,7 +30,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private fun refreshUsersFromRepository() {
         viewModelScope.launch {
             try {
-                usersRepository.refreshUsers()
+                usersRepository.requestAndSaveData()
             } catch(networkError: IOException) {
                 //TODO: handle network error
             }

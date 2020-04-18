@@ -3,6 +3,7 @@ package com.example.randomuser.ui.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.example.randomuser.databinding.UserItemBinding
 import com.example.randomuser.domain.UserModel
 
 class UserListAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<UserModel, UserListAdapter.UserViewHolder>(DiffCallback) {
+    PagedListAdapter<UserModel, UserListAdapter.UserViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val userItemBinding = DataBindingUtil.inflate<UserItemBinding>(LayoutInflater.from(parent.context), R.layout.user_item, parent, false)
@@ -21,9 +22,12 @@ class UserListAdapter(private val onClickListener: OnClickListener) :
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = getItem(position)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(user)
+            onClickListener.onClick(user!!)
         }
-        holder.bind(user)
+        if(user != null) {
+            holder.bind(user!!)
+        }
+
     }
 
     class UserViewHolder(private var binding: UserItemBinding) :

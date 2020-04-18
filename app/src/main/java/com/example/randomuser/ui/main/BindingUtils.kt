@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,7 +13,7 @@ import com.example.randomuser.domain.UserModel
 import java.text.SimpleDateFormat
 
 @BindingAdapter("userData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<UserModel>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: PagedList<UserModel>?) {
     val adapter = recyclerView.adapter as UserListAdapter
     adapter.submitList(data)
 }

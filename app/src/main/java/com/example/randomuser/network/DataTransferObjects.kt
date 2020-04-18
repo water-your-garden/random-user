@@ -1,6 +1,6 @@
 package com.example.randomuser.network
 
-import com.example.randomuser.database.DatabaseUser
+import com.example.randomuser.domain.UserModel
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -47,9 +47,9 @@ data class Picture(
     val large: String
 )
 
-fun NetworkUserContainer.asDatabaseModel(): List<DatabaseUser> {
+fun NetworkUserContainer.asDatabaseModel(): List<UserModel> {
     return results.map {
-        DatabaseUser(
+        UserModel(
             uuid = it.login.uuid,
             title = it.name.title,
             firstName = it.name.first,
