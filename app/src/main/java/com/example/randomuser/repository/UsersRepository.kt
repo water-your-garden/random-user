@@ -16,10 +16,18 @@ class UsersRepository(private val database: UserDatabase) {
         it.asDomainModel()
     }
 
+    private var lastRequestedPage = 1
+
     suspend fun refreshUsers() {
         withContext(Dispatchers.IO) {
-            val userList = UserNetwork.retrofitService.getUsers(3, 5, "abc").await()
+            val userList = UserNetwork.retrofitService.getUsers(lastRequestedPage, NETWORK_PAGE_SIZE, SEED).await()
+            lastRequestedPage++
             database.userDao.insertAll(userList.asDatabaseModel())
         }
+    }
+
+    companion object {
+        private const val NETWORK_PAGE_SIZE = 5
+        private const val SEED = "abc"
     }
 }
