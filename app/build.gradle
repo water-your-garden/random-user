@@ -70,6 +70,9 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
     // Moshi
     implementation "com.squareup.moshi:moshi:$moshi_version"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
