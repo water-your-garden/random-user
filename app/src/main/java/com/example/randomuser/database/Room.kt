@@ -3,7 +3,6 @@ package com.example.randomuser.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.randomuser.domain.UserModel
 
 @Dao
 interface UserDao {
@@ -11,7 +10,7 @@ interface UserDao {
     fun getUsers(): LiveData<List<DatabaseUser>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( videos: List<DatabaseUser>)
+    fun insertAll( users: List<DatabaseUser>)
 }
 
 
