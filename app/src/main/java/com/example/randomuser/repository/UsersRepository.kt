@@ -18,7 +18,7 @@ class UsersRepository(private val database: UserDatabase) {
 
     suspend fun refreshUsers() {
         withContext(Dispatchers.IO) {
-            val userList = UserNetwork.retrofitService.getUsers().await()
+            val userList = UserNetwork.retrofitService.getUsers(3, 5, "abc").await()
             database.userDao.insertAll(userList.asDatabaseModel())
         }
     }
