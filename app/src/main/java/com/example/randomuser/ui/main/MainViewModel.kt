@@ -13,25 +13,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val usersRepository = UsersRepository(getDatabase(application), viewModelScope)
 
-    val users : LiveData<PagedList<UserModel>> = usersRepository.users
-//    private val _users = MutableLiveData<List<UserModel>>()
-//    val users : LiveData<List<UserModel>>
-//        get () = _users
+    val users: LiveData<PagedList<UserModel>> = usersRepository.users
 
     private val _navigateToSelectedProperty = MutableLiveData<UserModel>()
     val navigateToSelectedProperty: LiveData<UserModel>
         get() = _navigateToSelectedProperty
 
-    init {
-//        _users.value = usersRepository.users.value
-        refreshUsersFromRepository()
-    }
-
     private fun refreshUsersFromRepository() {
         viewModelScope.launch {
             try {
                 usersRepository.requestAndSaveData()
-            } catch(networkError: IOException) {
+            } catch (networkError: IOException) {
                 //TODO: handle network error
             }
         }

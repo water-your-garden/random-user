@@ -20,13 +20,15 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBinding.inflate(inflater)
+
         binding.lifecycleOwner = this
 
         val user = DetailFragmentArgs.fromBundle(requireArguments()).selectedUser
         val viewModelFactory = DetailViewModel.DetailViewModelFactory(user, application)
+
         binding.viewModel =
             ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 

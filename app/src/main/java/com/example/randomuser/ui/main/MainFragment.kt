@@ -33,18 +33,19 @@ class MainFragment : Fragment() {
         val adapter = UserListAdapter(UserListAdapter.OnClickListener {
             viewModel.displayUserDetails(it)
         })
+
         binding.recyclerView.adapter = adapter
 
-        adapter.submitList(viewModel.users.value)
+//        adapter.submitList(viewModel.users.value)
 
         viewModel.users.observe(viewLifecycleOwner, Observer { users ->
-            users?.apply{
+            users?.apply {
                 adapter.submitList(this)
             }
         })
 
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-            if(null != it) {
+            if (null != it) {
                 this.findNavController()
                     .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it))
                 viewModel.displayUserDetailsComplete()

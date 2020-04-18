@@ -13,6 +13,7 @@ class DetailViewModel(user: UserModel, app: Application) : AndroidViewModel(app)
     init {
         _selectedUser.value = user
     }
+
     class DetailViewModelFactory(
         private val user: UserModel,
         private val app: Application

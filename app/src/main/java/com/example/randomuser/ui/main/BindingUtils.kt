@@ -20,7 +20,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: PagedList<UserModel>?) {
 
 @BindingAdapter("userNameString")
 fun TextView.setUserName(item: UserModel) {
-//    text = "${item.title} ${item.firstName} ${item.lastName}"
     text = resources.getString(R.string.name_template, item.title, item.firstName, item.lastName)
 }
 
@@ -55,6 +54,5 @@ fun TextView.setUserAge(age: Int) {
 
 @BindingAdapter("userLocationString")
 fun TextView.setUserLocation(item: UserModel) {
-//    text = "${item.country}, ${item.city}"
     text = resources.getString(R.string.location_template, item.country, item.city)
 }

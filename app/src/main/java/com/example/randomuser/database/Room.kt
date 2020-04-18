@@ -1,9 +1,7 @@
 package com.example.randomuser.database
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import androidx.paging.PagedList
 import androidx.room.*
 import com.example.randomuser.domain.UserModel
 
@@ -15,8 +13,6 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll( users: List<UserModel>)
 }
-
-
 
 @Database(entities = [UserModel::class], version = 1)
 abstract class UserDatabase: RoomDatabase() {

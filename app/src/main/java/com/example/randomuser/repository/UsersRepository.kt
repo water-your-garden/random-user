@@ -10,30 +10,32 @@ import com.example.randomuser.network.asDatabaseModel
 import kotlinx.coroutines.*
 import java.io.IOException
 
-class UsersRepository(private val database: UserDatabase,
-                      val coroutineScope: CoroutineScope
-): PagedList.BoundaryCallback<UserModel>(){
+class UsersRepository(
+    private val database: UserDatabase,
+    val coroutineScope: CoroutineScope
+) : PagedList.BoundaryCallback<UserModel>() {
 
     val users: LiveData<PagedList<UserModel>> = getUsersFromDatabase()
 
     private var lastRequestedPage = 1
 
-    private fun getUsersFromDatabase() : LiveData<PagedList<UserModel>> {
+    private fun getUsersFromDatabase(): LiveData<PagedList<UserModel>> {
         val dataSourceFactory = database.userDao.getUsers()
 
-        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
+        return LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(this)
             .build()
-
-        return data
-
     }
 
     fun requestAndSaveData() {
         coroutineScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    val userList = UserNetwork.retrofitService.getUsers(lastRequestedPage, NETWORK_PAGE_SIZE, SEED).await()
+                    val userList = UserNetwork.retrofitService.getUsers(
+                        lastRequestedPage,
+                        NETWORK_PAGE_SIZE,
+                        SEED
+                    ).await()
                     lastRequestedPage++
                     database.userDao.insertAll(userList.asDatabaseModel())
                 }
@@ -41,7 +43,6 @@ class UsersRepository(private val database: UserDatabase,
                 //TODO: handle network error
             }
         }
-
     }
 
     override fun onZeroItemsLoaded() {

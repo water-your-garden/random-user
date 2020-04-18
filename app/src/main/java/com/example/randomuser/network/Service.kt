@@ -15,7 +15,7 @@ interface UserService {
         @Query("page") page: Int,
         @Query("results") itemsPerPage: Int,
         @Query("seed") seed: String
-        ): Deferred<NetworkUserContainer>
+    ): Deferred<NetworkUserContainer>
 }
 
 private val moshi = Moshi.Builder()

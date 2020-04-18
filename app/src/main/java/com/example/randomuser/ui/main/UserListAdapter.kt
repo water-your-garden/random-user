@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuser.R
 import com.example.randomuser.databinding.UserItemBinding
@@ -15,7 +14,12 @@ class UserListAdapter(private val onClickListener: OnClickListener) :
     PagedListAdapter<UserModel, UserListAdapter.UserViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val userItemBinding = DataBindingUtil.inflate<UserItemBinding>(LayoutInflater.from(parent.context), R.layout.user_item, parent, false)
+        val userItemBinding = DataBindingUtil.inflate<UserItemBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.user_item,
+            parent,
+            false
+        )
         return UserViewHolder(userItemBinding)
     }
 
@@ -24,7 +28,7 @@ class UserListAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener {
             onClickListener.onClick(user!!)
         }
-        if(user != null) {
+        if (user != null) {
             holder.bind(user!!)
         }
 
