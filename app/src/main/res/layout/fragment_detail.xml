@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="250dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,8 @@
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profilePhoto"
@@ -61,7 +63,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="About"
+            android:layout_marginTop="16dp"
+            android:text="@string/aboutTitle"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationText" />
 
@@ -84,31 +88,55 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/ageTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ageTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
                     android:id="@+id/ageText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ageTitleText"
                     app:userAgeString="@{viewModel.user.age}"
                     tools:text="Age" />
+
+                <TextView
+                    android:id="@+id/dateOfBirthTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/dateOfBirthTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ageTitleText" />
 
                 <TextView
                     android:id="@+id/dateOfBirthText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ageText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/dateOfBirthTitleText"
                     app:userDateOfBirthString="@{viewModel.user.dateOfBirth}"
                     tools:text="D.O.B" />
+
+                <TextView
+                    android:id="@+id/genderTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/genderTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateOfBirthTitleText" />
 
                 <TextView
                     android:id="@+id/genderText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dateOfBirthText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/genderTitleText"
                     app:text="@{viewModel.user.gender}"
                     tools:text="Gender" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -121,7 +149,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Contact"
+            android:text="@string/contactTitle"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aboutView" />
 
@@ -144,22 +173,38 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/phoneTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phoneTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
                     android:id="@+id/phoneText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.user.phone}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/phoneTitleText"
                     tools:text="Phone" />
+
+                <TextView
+                    android:id="@+id/emailTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/emailTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/phoneTitleText" />
 
                 <TextView
                     android:id="@+id/emailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="@{viewModel.user.email}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/phoneText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/emailTitleText"
                     tools:text="Email" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

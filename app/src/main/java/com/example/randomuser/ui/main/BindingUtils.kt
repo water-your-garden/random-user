@@ -20,7 +20,8 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: PagedList<UserModel>?) {
 
 @BindingAdapter("userNameString")
 fun TextView.setUserName(item: UserModel) {
-    text = "${item.title} ${item.firstName} ${item.lastName}"
+//    text = "${item.title} ${item.firstName} ${item.lastName}"
+    text = resources.getString(R.string.name_template, item.title, item.firstName, item.lastName)
 }
 
 @BindingAdapter("userDateOfBirthString")
@@ -37,10 +38,12 @@ fun ImageView.setUserThumbnail(thumbUrl: String) {
         val imgUri = thumbUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(this.context)
             .load(imgUri)
-            .apply(RequestOptions()
-                .dontAnimate()
-                .placeholder(R.drawable.ic_broken_image)
-                .error(R.drawable.loading_animation))
+            .apply(
+                RequestOptions()
+                    .dontAnimate()
+                    .placeholder(R.drawable.ic_broken_image)
+                    .error(R.drawable.loading_animation)
+            )
             .into(this)
     }
 }
@@ -52,5 +55,6 @@ fun TextView.setUserAge(age: Int) {
 
 @BindingAdapter("userLocationString")
 fun TextView.setUserLocation(item: UserModel) {
-    text = "${item.country}, ${item.city}"
+//    text = "${item.country}, ${item.city}"
+    text = resources.getString(R.string.location_template, item.country, item.city)
 }

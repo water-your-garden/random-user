@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">RandomUser</string>
+
+    <string name="name_template">%1s %2s %3s</string>
+    <string name="location_template">%1s, %2s</string>
+
+    <string name="ageTitle">Age</string>
+    <string name="dateOfBirthTitle">D.O.B</string>
+    <string name="genderTitle">Gender</string>
+    <string name="phoneTitle">Phone</string>
+    <string name="emailTitle">Email</string>
+    <string name="aboutTitle">About</string>
+    <string name="contactTitle">Contact</string>
 </resources>
