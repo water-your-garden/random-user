@@ -36,8 +36,6 @@ class MainFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-//        adapter.submitList(viewModel.users.value)
-
         viewModel.users.observe(viewLifecycleOwner, Observer { users ->
             users?.apply {
                 adapter.submitList(this)
